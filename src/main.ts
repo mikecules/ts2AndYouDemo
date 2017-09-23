@@ -24,11 +24,11 @@ class Game extends Phaser.Game {
   private _secret: any;
 
   constructor() {
-    const docElement = document.documentElement;
-    const width = Math.min(Config.gameContainer.width, docElement.clientWidth);
-    const height = Math.min(Config.gameContainer.height, docElement.clientHeight);
+    const docElement: HTMLElement = document.documentElement;
+    const width: number = Math.min(Config.gameContainer.width, docElement.clientWidth);
+    const height: number = Math.min(Config.gameContainer.height, docElement.clientHeight);
 
-    super(width, height, Phaser.CANVAS, Config.gameContainer.id, null);
+    super(width, height, Config.phaserOptions.renderer, Config.gameContainer.id, null);
 
     this.state.add('Boot', BootState, false);
     this.state.add('Preload', PreloadState, false);

@@ -1,0 +1,36 @@
+{
+  "name": "typescript-2-and-you",
+  "version": "1.0.0",
+  "description": "",
+  "author": "Michael Moncada <michael.moncada@gmail.com>",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack",
+    "deploy": "webpack --config webpack.production.config.js",
+    "test": "tslint ./src/**/**.ts"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-eslint": "^7.2.3",
+    "babel-loader": "^7.0.0",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-env": "^1.6.0",
+    "browser-sync": "^2.18.12",
+    "browser-sync-webpack-plugin": "^1.1.4",
+    "css-loader": "^0.28.7",
+    "expose-loader": "^0.7.3",
+    "file-loader": "^0.11.2",
+    "has-flag": "^2.0.0",
+    "style-loader": "^0.18.2",
+    "ts-loader": "^2.3.7",
+    "tslint": "^5.7.0",
+    "tslint-config-airbnb": "^5.3.0",
+    "typescript": "^2.5.2",
+    "webpack": "^2.6.1"
+  },
+  "dependencies": {
+    "phaser-ce": "^2.8.0",
+    "webfontloader": "^1.6.28"
+  }
+}

@@ -14,7 +14,7 @@ interface PhaserConfig {
 
 interface GameConfig {
   gameContainer: GameContainer;
-  phaserOptions:PhaserConfig;
+  phaserOptions: PhaserConfig;
 }
 
 const CONFIG: GameConfig = {

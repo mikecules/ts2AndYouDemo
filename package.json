@@ -7,10 +7,11 @@
   "scripts": {
     "start": "webpack",
     "deploy": "webpack --config webpack.production.config.js",
-    "test": "tslint ./src/**/**.ts"
+    "test": "tslint --format stylish -p ."
   },
   "license": "MIT",
   "devDependencies": {
+    "awesome-typescript-loader": "^3.2.3",
     "babel-core": "^6.24.1",
     "babel-eslint": "^7.2.3",
     "babel-loader": "^7.0.0",
@@ -23,9 +24,8 @@
     "file-loader": "^0.11.2",
     "has-flag": "^2.0.0",
     "style-loader": "^0.18.2",
-    "ts-loader": "^2.3.7",
     "tslint": "^5.7.0",
-    "tslint-config-airbnb": "^5.3.0",
+    "tslint-loader": "^3.5.3",
     "typescript": "^2.5.2",
     "webpack": "^2.6.1"
   },

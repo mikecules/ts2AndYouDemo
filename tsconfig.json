@@ -1,18 +1,18 @@
 {
   "compilerOptions": {
+    "alwaysStrict": true,
     "outDir": "./dist",
     "sourceMap": true,
     "noImplicitAny": true,
-    "module": "commonjs",
+    "module": "es2015",
     "target": "es6",
     "allowJs": true,
-    "pretty": true,
+    "checkJs": true,
+    "pretty": true
   },
   "include": [
     "src/**/*",
-    "src/*"
-  ],
-  "exclude": [
-    "node_modules"
+    "src/*",
+    "node_modules/phaser-ce/typescript/phaser.d.ts"
   ]
 }

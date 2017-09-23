@@ -1,3 +1,11 @@
+html {
+    font-size: 62.5%;
+}
+
 body {
-    background-color: hotpink;
+    background-color: #fff;
+}
+
+#game-container {
+    margin: 0 auto;
 }

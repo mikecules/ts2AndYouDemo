@@ -1,12 +1,13 @@
-var path = require('path')
-var webpack = require('webpack')
-var BrowserSyncPlugin = require('browser-sync-webpack-plugin')
+var path = require('path');
+var webpack = require('webpack');
+var BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+const { CheckerPlugin } = require('awesome-typescript-loader');
 
 // Phaser webpack config
-var phaserModule = path.join(__dirname, '/node_modules/phaser-ce/')
-var phaser = path.join(phaserModule, 'build/custom/phaser-split.js')
-var pixi = path.join(phaserModule, 'build/custom/pixi.js')
-var p2 = path.join(phaserModule, 'build/custom/p2.js')
+var phaserModule = path.join(__dirname, '/node_modules/phaser-ce/');
+var phaser = path.join(phaserModule, 'build/custom/phaser-split.js');
+var pixi = path.join(phaserModule, 'build/custom/pixi.js');
+var p2 = path.join(phaserModule, 'build/custom/p2.js');
 
 var definePlugin = new webpack.DefinePlugin({
   __DEV__: JSON.stringify(JSON.parse(process.env.BUILD_DEV || 'true'))
@@ -15,12 +16,11 @@ var definePlugin = new webpack.DefinePlugin({
 module.exports = {
   entry: {
     app: [
-      'babel-polyfill',
       path.resolve(__dirname, 'src/main.ts')
     ],
     vendor: ['pixi', 'p2', 'phaser', 'webfontloader']
   },
-  devtool: 'cheap-source-map',
+  devtool: 'source-map',
   output: {
     pathinfo: true,
     path: path.resolve(__dirname, 'dist'),
@@ -30,6 +30,7 @@ module.exports = {
   watch: true,
   plugins: [
     definePlugin,
+    new CheckerPlugin(),
     new webpack.optimize.CommonsChunkPlugin({ name: 'vendor'/* chunkName= */, filename: 'vendor.bundle.js'/* filename= */}),
     new BrowserSyncPlugin({
       host: process.env.IP || 'localhost',
@@ -42,11 +43,18 @@ module.exports = {
   module: {
       rules: [
       { test: /\.js$/, use: ['babel-loader'], include: path.join(__dirname, 'src') },
-      { test: /\.tsx?$/, use: 'ts-loader', exclude: /node_modules/ },
+      {
+        test: /\.tsx?$/, enforce: 'pre', use: [
+          { loader: 'tslint-loader', options: { tsConfigFile: 'tsconfig.json', configFile: 'tslint.json', formatter: 'stylish' } },
+          { loader: 'awesome-typescript-loader' }
+          ],
+          exclude: /node_modules/
+      },
       { test: /pixi\.js/, use: ['expose-loader?PIXI'] },
       { test: /phaser-split\.js$/, use: ['expose-loader?Phaser'] },
       { test: /p2\.js/, use: ['expose-loader?p2'] },
-      { test: /\.(jpe?g|png|gif|svg)$$/, use: [ { loader: 'file-loader', options: { name: '[path][name].[ext]' } } ] }, { test: /\.(html)$/, use: [ { loader: 'file-loader', options: { name: '[name].[ext]' } } ] },
+      { test: /\.(jpe?g|png|gif|svg)$$/, use: [ { loader: 'file-loader', options: { name: '[path][name].[ext]' } } ] },
+      { test: /\.(html)$/, use: [ { loader: 'file-loader', options: { name: '[name].[ext]' } } ] },
       { test: /\.css$/, use: [ 'style-loader', 'css-loader' ] }
     ]
   },
@@ -63,4 +71,4 @@ module.exports = {
     },
     extensions: ['.ts', '.tsx', '.js'],
   }
-}
+};

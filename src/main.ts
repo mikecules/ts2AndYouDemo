@@ -1,35 +1,47 @@
-import 'pixi';
-import 'p2';
-import * as Phaser from 'phaser-ce';
-import '../www/index.html';
+// Assets
 import '../www/css/main.css';
+import '../www/index.html';
+///
 
-declare global {
-  interface Window { game: any; }
-}
+// Import the Phaser libs
+import 'p2';
+import 'pixi';
 
-window.game = window.game || {};
+// 'phaser-ce' resolves to the 'phaser.comments.d.ts' declaration file in node_modules
+import * as Phaser from 'phaser-ce';
 
+// States
 import BootState from './states/BootState';
-import PreloadState from './states/PreloadState';
 import PlayState from './states/PlayState';
+import PreloadState from './states/PreloadState';
 
+// Config
 import Config from './config/Config';
 
 class Game extends Phaser.Game {
-  constructor () {
-    const docElement = document.documentElement;
-    const width = Math.min(Config.width, docElement.clientWidth);
-    const height = Math.min(Config.height, docElement.clientHeight);
+  public blah: boolean;
 
-    super(width, height, Phaser.CANVAS, 'game-container', null);
+  private _secret: any;
+
+  constructor() {
+    const docElement = document.documentElement;
+    const width = Math.min(Config.gameContainer.width, docElement.clientWidth);
+    const height = Math.min(Config.gameContainer.height, docElement.clientHeight);
+
+    super(width, height, Phaser.CANVAS, Config.gameContainer.id, null);
 
     this.state.add('Boot', BootState, false);
     this.state.add('Preload', PreloadState, false);
     this.state.add('Play', PlayState, false);
 
     this.state.start('Boot');
+    this.blah = true;
+    this._secret = 'this is secret!';
   }
 }
 
-window.game = new Game();
+declare global {
+    interface Window { game: Game; }
+}
+
+window.game = window.game || new Game();

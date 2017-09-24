@@ -17,6 +17,7 @@
         }
       }
     ],
+    "no-trailing-whitespace": [true, "ignore-comments", "ignore-jsdoc", "ignore-template-strings"],
     "interface-over-type-literal": true,
     "interface-name": false,
     "object-literal-sort-keys": false,

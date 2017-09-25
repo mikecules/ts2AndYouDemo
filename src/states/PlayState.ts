@@ -1,21 +1,21 @@
 import * as Phaser from 'phaser-ce';
-import PerlinNoise from '../sprites/ChaosStar';
+import ChaosStar from '../sprites/ChaosStar';
 import StarFieldBackground from '../layers/StarFieldBackground';
 
 class PlayState extends Phaser.State {
   public static VELOCITY_X: number = 180;
 
-  private _perlinNoise: PerlinNoise;
+  private _chaosStar: ChaosStar;
   private _backgroundLayer: StarFieldBackground;
 
   public create(): void {
     this.game.time.advancedTiming = true;
     this.stage.backgroundColor = 0x000000;
-    this._perlinNoise = new PerlinNoise(this.game);
+    this._chaosStar = new ChaosStar(this.game);
     this.camera.bounds = null;
 
     this._backgroundLayer = new StarFieldBackground(this.game, this.world);
-    this.world.add(this._perlinNoise);
+    this.world.add(this._chaosStar);
   }
 
   public update(): void {
@@ -27,7 +27,7 @@ class PlayState extends Phaser.State {
 
   public updatePhysics(): void {
     // TODO: Complete
-    this._perlinNoise.render();
+    this._chaosStar.render();
   }
 }
 

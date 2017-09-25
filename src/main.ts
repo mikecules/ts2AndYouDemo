@@ -2,7 +2,7 @@
 import '../www/css/main.css';
 import '../www/index.html';
 import '../assets/images/star.png';
-// import '../assets/images/edWiz.png';
+import '../assets/images/edWiz.png';
 ///
 
 // Import the Phaser libs

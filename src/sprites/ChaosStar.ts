@@ -1,10 +1,6 @@
 import * as Phaser from 'phaser-ce';
 
-class PerlinNoise extends Phaser.Sprite {
-
-  public static TEXTURE_WIDTH: number = 512 ;
-  public static FILTER_UNIFORM_VEC_LEN: number = 4;
-
+class ChaosStar extends Phaser.Sprite {
 
   public static FRAGMENT_SHADER: string[] | string = [
 
@@ -64,7 +60,7 @@ class PerlinNoise extends Phaser.Sprite {
   constructor(game: Phaser.Game, x?: number, y?: number) {
     super(game, x, y);
 
-    this._filter = new Phaser.Filter(game, null, PerlinNoise.FRAGMENT_SHADER);
+    this._filter = new Phaser.Filter(game, null, ChaosStar.FRAGMENT_SHADER);
 
     this.filters = [this._filter];
   }
@@ -86,4 +82,4 @@ class PerlinNoise extends Phaser.Sprite {
 
 }
 
-export default PerlinNoise;
+export default ChaosStar;

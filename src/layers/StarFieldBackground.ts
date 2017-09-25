@@ -4,7 +4,7 @@ export class StarFieldBackground extends Phaser.Group {
   public static MAX_STARS: number = 25;
   public static STAR_DIST_MIN: number= 0;
   public static STAR_DIST_MAX: number = 25;
-  public static STAR_ID: string = 'stars';
+  public static ID: string = 'stars';
 
   private _closerStars: Phaser.Group;
   private _fartherStars: Phaser.Group;
@@ -16,17 +16,17 @@ export class StarFieldBackground extends Phaser.Group {
   public constructor(game: Phaser.Game, parent: PIXI.DisplayObjectContainer) {
     super(game, parent);
 
-    this._starWidth = this.game.cache.getImage(StarFieldBackground.STAR_ID).width;
+    this._starWidth = this.game.cache.getImage(StarFieldBackground.ID).width;
 
     this._fartherStars = new Phaser.Group(game, this);
     this._fartherStars.createMultiple(
       Math.round(StarFieldBackground.MAX_STARS * 3),
-      StarFieldBackground.STAR_ID,
+      StarFieldBackground.ID,
       0,
       true);
 
     this._closerStars = new Phaser.Group(game, this);
-    this._closerStars.createMultiple(StarFieldBackground.MAX_STARS, StarFieldBackground.STAR_ID, 0, true);
+    this._closerStars.createMultiple(StarFieldBackground.MAX_STARS, StarFieldBackground.ID, 0, true);
 
     this._closerStars.forEach( (star: Phaser.Sprite) => {
       star.scale = new Phaser.Point(1.1, 1.1);

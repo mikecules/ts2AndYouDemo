@@ -44,10 +44,19 @@ module.exports = {
       rules: [
       { test: /\.js$/, use: ['babel-loader'], include: path.join(__dirname, 'src') },
       {
-        test: /\.tsx?$/, enforce: 'pre', use: [
-          { loader: 'tslint-loader', options: { tsConfigFile: 'tsconfig.json', configFile: 'tslint.json', formatter: 'stylish' } },
-          { loader: 'awesome-typescript-loader' }
-          ],
+          enforce: 'pre',
+          test: /\.tsx?$/,
+          loader: 'tslint-loader',
+          exclude: /node_modules/,
+          options: {
+            tsConfigFile: 'tsconfig.json',
+            configFile: 'tslint.json',
+            formatter: 'stylish'
+          }
+      },
+      {
+          test: /\.tsx?$/,
+          loaders: ['awesome-typescript-loader'],
           exclude: /node_modules/
       },
       { test: /pixi\.js/, use: ['expose-loader?PIXI'] },

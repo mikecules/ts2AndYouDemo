@@ -3,17 +3,15 @@ import * as Phaser from 'phaser-ce';
 class ChaosStar extends Phaser.Sprite {
 
   public static FRAGMENT_SHADER: string[] | string = [
-
     'precision mediump float;',
 
     'uniform float     time;',
     'uniform vec2      resolution;',
     'uniform vec2      mouse;',
 
-    '// Yuldashev Mahmud Effect took from shaderToy mahmud9935@gmail.com',
+    '// Originally sourced from: Yuldashev Mahmud Effect took from shaderToy mahmud9935@gmail.com',
 
-    'float snoise(vec3 uv, float res)',
-    '{',
+    'float snoise(vec3 uv, float res) {',
       'const vec3 s = vec3(1e0, 1e2, 1e3);',
 
       'uv *= res;',
@@ -37,21 +35,19 @@ class ChaosStar extends Phaser.Sprite {
 
     'void main( void ) {',
 
-    'vec2 p = -.5 + gl_FragCoord.xy / resolution.xy;',
-    'p.x *= resolution.x/resolution.y;',
+      'vec2 p = -.5 + gl_FragCoord.xy / resolution.xy;',
+      'p.x *= resolution.x/resolution.y;',
 
-    'float color = 3.0 - (3.*length(2.*p));',
+      'float color = 3.0 - (3.*length(2.*p));',
 
-    'vec3 coord = vec3(atan(p.x,p.y)/6.2832+.5, length(p)*.4, .5);',
+      'vec3 coord = vec3(atan(p.x,p.y)/6.2832+.5, length(p)*.4, .5);',
 
-    'for(int i = 1; i <= 7; i++)',
-    '{',
-      'float power = pow(2.0, float(i));',
-      'color += (1.5 / power) * snoise(coord + vec3(0.,-time*.05, time*.01), power*16.);',
+      'for(int i = 1; i <= 7; i++) {',
+        'float power = pow(2.0, float(i));',
+        'color += (1.5 / power) * snoise(coord + vec3(0.,-time*.05, time*.01), power*16.);',
+      '}',
+      'gl_FragColor = vec4(pow(max(color,0.),3.)*0.15 , pow(max(color,0.),2.)*0.4, color  , 0.1);',
     '}',
-    'gl_FragColor = vec4( color, pow(max(color,0.),2.)*0.4, pow(max(color,0.),3.)*0.15 , 0.1);',
-    '}'
-
   ];
 
   private _filter: Phaser.Filter;

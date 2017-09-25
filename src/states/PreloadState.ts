@@ -6,8 +6,8 @@ class PreloadState extends Phaser.State {
   private _isGameReady: boolean = false;
 
   public preload(): void {
-    this.load.image(StarfieldBackground.STAR_ID, 'assets/images/star.png');
-    this.load.image(CosmicEd.COSMIC_ED_ID, 'assets/images/edWiz.png');
+    this.load.image(StarfieldBackground.ID, 'assets/images/star.png');
+    this.load.image(CosmicEd.ID, 'assets/images/edWiz.png');
   }
 
   public update(): void {

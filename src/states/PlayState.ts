@@ -28,8 +28,8 @@ class PlayState extends Phaser.State {
     this.updatePhysics();
     this.camera.x += this.time.physicsElapsed * PlayState.VELOCITY_X;
     this._backgroundLayer.render(this.camera.x);
-    this._cosmicEd.x = this.camera.x + (this.game.width - this._cosmicEd.width)/2 ;
-    this._cosmicEd.y = (this.game.height - this._cosmicEd.height)/2;
+    this._cosmicEd.x = this.camera.x + (this.game.width - this._cosmicEd.width) / 2 ;
+    this._cosmicEd.y = (this.game.height - this._cosmicEd.height) / 2;
     this._cosmicEd.render();
   }
 

@@ -30,11 +30,11 @@ class CosmicEd extends Phaser.Sprite {
 
   public render() {
     if (!this._isInTween) {
-      this._glow();
+      this._animate();
     }
   }
 
-  private _glow() {
+  private _animate() {
     const startColour: number = 0x111111;
     const endColour: number = 0xffffff;
     const startScale: number = 0.0;
@@ -50,30 +50,19 @@ class CosmicEd extends Phaser.Sprite {
     };
 
     const scaleFn1: (step: number) => void = (step: number) => {
-      this.scale.set(Phaser.Math.linearInterpolation([startScale, endScale], step/100));
+      this.scale.set(Phaser.Math.linearInterpolation([startScale, endScale], step / 100));
     };
 
     const scaleFn2: (step: number) => void = (step: number) => {
-      this.scale.set(Phaser.Math.linearInterpolation([endScale, startScale], step/100));
+      this.scale.set(Phaser.Math.linearInterpolation([endScale, startScale], step / 100));
     };
 
     this._isInTween = true;
     this.tint = startColour;
     this.scale.set(startScale);
 
-    this.tweenEd(colourFn1, tMS,
-      () => (
-        this.tweenEd(colourFn2,
-          tMS - 1000)
-    ));
-
-    this.tweenEd(scaleFn1, tMS,
-      () => (
-        this.tweenEd(scaleFn2,
-          tMS - 1000,
-          () =>
-            this._isInTween = false))
-    );
+    this.tweenEd(colourFn1, tMS, () => this.tweenEd(colourFn2, tMS));
+    this.tweenEd(scaleFn1, tMS, () => this.tweenEd(scaleFn2, tMS, () => this._isInTween = false));
   }
 }
 

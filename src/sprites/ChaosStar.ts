@@ -1,8 +1,10 @@
 import * as Phaser from 'phaser-ce';
 
+type FragShader = string[] | string;
+
 class ChaosStar extends Phaser.Sprite {
 
-  public static FRAGMENT_SHADER: string[] | string = [
+  public static FRAGMENT_SHADER: FragShader = [
     'precision mediump float;',
 
     'uniform float     time;',

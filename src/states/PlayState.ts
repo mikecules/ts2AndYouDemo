@@ -25,17 +25,12 @@ class PlayState extends Phaser.State {
 
   public update(): void {
     this.game.debug.text((this.game.time.fps.toString() || '--') + 'fps', 2, 14, '#00ff00');
-    this.updatePhysics();
+    this._chaosStar.render();
     this.camera.x += this.time.physicsElapsed * PlayState.VELOCITY_X;
     this._backgroundLayer.render(this.camera.x);
     this._cosmicEd.x = this.camera.x + (this.game.width - this._cosmicEd.width) / 2 ;
     this._cosmicEd.y = (this.game.height - this._cosmicEd.height) / 2;
     this._cosmicEd.render();
-  }
-
-  public updatePhysics(): void {
-    // TODO: Complete
-    this._chaosStar.render();
   }
 }
 

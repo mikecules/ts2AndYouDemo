@@ -21,9 +21,6 @@ import PreloadState from './states/PreloadState';
 import Config from './config/Config';
 
 class Game extends Phaser.Game {
-  public blah: boolean;
-
-  private _secret: any;
 
   constructor() {
     const docElement: HTMLElement = document.documentElement;
@@ -37,8 +34,6 @@ class Game extends Phaser.Game {
     this.state.add('Play', PlayState, false);
 
     this.state.start('Boot');
-    this.blah = true;
-    this._secret = 'this is secret!';
   }
 }
 

@@ -11,7 +11,8 @@ class ChaosStar extends Phaser.Sprite {
     'uniform vec2      resolution;',
     'uniform vec2      mouse;',
 
-    '// Originally sourced from: Yuldashev Mahmud Effect took from shaderToy mahmud9935@gmail.com',
+    '// Modified version originally sourced from: Yuldashev Mahmud Effect took from shaderToy' +
+    ' mahmud9935@gmail.com',
 
     'float snoise(vec3 uv, float res) {',
       'const vec3 s = vec3(1e0, 1e2, 1e3);',
